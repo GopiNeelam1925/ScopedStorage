@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.scopedstorage.accessmedialocation.AccessMediaLocationActivity
-import com.example.scopedstorage.downlaoddemo.DownloadImageActivity
-import com.example.scopedstorage.imagedemo.ImagePickerActivity
+import com.example.scopedstorage.accessMediaLocation.AccessMediaLocationActivity
+import com.example.scopedstorage.downlaodDemo.DownloadImageActivity
+import com.example.scopedstorage.imageDemo.ImagePickerActivity
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.scopedstorage.imagedemo
+package com.example.scopedstorage.imageDemo
 
 import android.view.LayoutInflater
 import android.view.View

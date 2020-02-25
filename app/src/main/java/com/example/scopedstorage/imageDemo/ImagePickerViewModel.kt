@@ -1,4 +1,4 @@
-package com.example.scopedstorage.imagedemo
+package com.example.scopedstorage.imageDemo
 
 import android.app.Application
 import android.app.RecoverableSecurityException

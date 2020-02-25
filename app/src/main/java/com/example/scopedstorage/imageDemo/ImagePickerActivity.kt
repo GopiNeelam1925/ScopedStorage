@@ -1,18 +1,12 @@
-package com.example.scopedstorage.imagedemo
+package com.example.scopedstorage.imageDemo
 
-import android.Manifest
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,7 +14,6 @@ import com.example.scopedstorage.R
 import com.example.scopedstorage.const.CheckPermission.checkPermissionForReadWrite
 import com.example.scopedstorage.const.CheckPermission.requestPermissionForReadWrite
 import com.example.scopedstorage.const.Constants.DELETE_PERMISSION_REQUEST
-import com.example.scopedstorage.const.Constants.PERMISSION_READ_EXTERNAL_STORAGE
 import com.example.scopedstorage.databinding.ActivityImagePickerBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 

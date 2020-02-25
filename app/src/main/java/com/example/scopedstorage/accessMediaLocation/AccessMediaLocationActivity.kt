@@ -1,4 +1,4 @@
-package com.example.scopedstorage.accessmedialocation
+package com.example.scopedstorage.accessMediaLocation
 
 import android.app.Activity
 import android.content.Intent

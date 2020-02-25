@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.scopedstorage.imagedemo
+package com.example.scopedstorage.imageDemo
 
 import android.net.Uri
 import androidx.recyclerview.widget.DiffUtil

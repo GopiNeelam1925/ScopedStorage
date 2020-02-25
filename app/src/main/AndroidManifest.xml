@@ -22,9 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".imagedemo.ImagePickerActivity"/>
-        <activity android:name=".downlaoddemo.DownloadImageActivity"/>
-        <activity android:name=".accessmedialocation.AccessMediaLocationActivity"/>
+        <activity android:name=".imageDemo.ImagePickerActivity"/>
+        <activity android:name=".downlaodDemo.DownloadImageActivity"/>
+        <activity android:name=".accessMediaLocation.AccessMediaLocationActivity"/>
 
     </application>
 

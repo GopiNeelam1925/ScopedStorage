@@ -1,12 +1,9 @@
-package com.example.scopedstorage.downlaoddemo
+package com.example.scopedstorage.downlaodDemo
 
 import android.app.Activity
-import android.app.DownloadManager
 import android.content.ContentValues
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -25,9 +22,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import android.content.Intent
 import android.graphics.BitmapFactory
-import com.example.scopedstorage.const.Constants
-
-
 
 
 class DownloadImageActivity : AppCompatActivity() {
