@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.scopedstorage.accessMediaLocation.AccessMediaLocationActivity
 import com.example.scopedstorage.downlaodDemo.DownloadImageActivity
+import com.example.scopedstorage.folderdemo.OpenFolderActivity
 import com.example.scopedstorage.imageDemo.ImagePickerActivity
 
 
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+    fun folderDemo(view : View){
+
+        startActivity(Intent(this@MainActivity, OpenFolderActivity::class.java))
+    }
 
 }
 

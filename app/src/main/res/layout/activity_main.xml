@@ -40,6 +40,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnDownloadImage" />
-
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnOpenDocTreeDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_document_tree_demo"
+        android:onClick="folderDemo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAccessMedia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
