@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.scopedstorage.R
-import com.example.scopedstorage.const.CheckPermission.checkPermissionForReadWrite
+import com.example.scopedstorage.const.CheckPermission.checkPermissionForRead
 import com.example.scopedstorage.const.CheckPermission.requestPermissionForReadWrite
 import com.example.scopedstorage.const.Constants.DELETE_PERMISSION_REQUEST
 import com.example.scopedstorage.databinding.ActivityImagePickerBinding
@@ -41,6 +41,7 @@ class ImagePickerActivity : AppCompatActivity() {
             galleryAdapter.submitList(images)
         })
 
+
         viewModel.permissionNeededForDelete.observe(this, Observer { intentSender ->
             intentSender?.let {
 
@@ -59,7 +60,7 @@ class ImagePickerActivity : AppCompatActivity() {
         binding.openAlbum.setOnClickListener { openMediaStore() }
         binding.grantPermissionButton.setOnClickListener { openMediaStore() }
 
-        if (!checkPermissionForReadWrite(this)) {
+        if (!checkPermissionForRead(this)) {
             binding.welcomeView.visibility = View.VISIBLE
         } else {
             showImages()
@@ -81,7 +82,7 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     private fun openMediaStore() {
-        if (checkPermissionForReadWrite(this)) {
+        if (checkPermissionForRead(this)) {
             showImages()
         } else {
             requestPermissionForReadWrite(this)

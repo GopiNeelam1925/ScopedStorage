@@ -1,7 +1,9 @@
 package com.example.scopedstorage.downlaodDemo
 
 import android.app.Activity
+import android.app.DownloadManager
 import android.content.ContentValues
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
@@ -14,7 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.scopedstorage.R
-import com.example.scopedstorage.const.CheckPermission.checkPermissionForReadWrite
+import com.example.scopedstorage.const.CheckPermission.checkPermissionForRead
 import com.example.scopedstorage.const.CheckPermission.requestPermissionForReadWrite
 import kotlinx.android.synthetic.main.activity_download_image.*
 import java.io.File
@@ -22,11 +24,12 @@ import java.io.FileOutputStream
 import java.io.IOException
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 
 
 class DownloadImageActivity : AppCompatActivity() {
 
-    var imgUrl = "https://sample-videos.com/img/Sample-png-image-3mb.png"
+    var imgUrl = "https://i.picsum.photos/id/388/536/354.jpg"
 
 
 
@@ -58,7 +61,7 @@ class DownloadImageActivity : AppCompatActivity() {
     fun saveFileToAppFolder(view: View) {
 
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            if (checkPermissionForReadWrite(this)) {
+            if (checkPermissionForRead(this)) {
                 downloadToLoaclFolder()
             } else {
                 requestPermissionForReadWrite(this)
@@ -72,16 +75,40 @@ class DownloadImageActivity : AppCompatActivity() {
 
     }
 
+    private fun downloadFile(uRl: String) {
+
+
+        val mgr = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+
+        val downloadUri = Uri.parse(uRl)
+        val request = DownloadManager.Request(
+            downloadUri
+        )
+
+        request.setAllowedNetworkTypes(
+            DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE
+        )
+            .setAllowedOverRoaming(false).setTitle("Demo")
+            .setDescription("Something useful. No, really.")
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, "DemoImage.jpg")
+
+        Toast.makeText(
+            applicationContext,
+            "Download successfully to ${downloadUri.path}",
+            Toast.LENGTH_LONG
+        ).show()
+
+        mgr.enqueue(request)
+
+    }
+
     private fun downloadToLoaclFolder(){
         try {
+
 
             var bitmap = (ivImageDownload.drawable as BitmapDrawable).bitmap
 
             val filepath = saveToInternalStorage(bitmap)
-
-
-
-
 
             Toast.makeText(
                 applicationContext,
@@ -144,25 +171,20 @@ class DownloadImageActivity : AppCompatActivity() {
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 
-                // if used under android Q throws error for unsuporeted URI
-                val file =  File(getExternalFilesDir(null), "DemoFile.jpg")
+                Log.i("TAG","Version Id : "+Build.VERSION.SDK_INT)
+                if (checkPermissionForRead(this)) {
+                    downloadFile(imgUrl)
+                } else {
+                    requestPermissionForReadWrite(this)
+                }
+
+                }
 
 
-
-                    var fos: FileOutputStream? = null
-
-                    fos = FileOutputStream(file)
-
-                    bitmap?.compress(Bitmap.CompressFormat.PNG, 100, fos)
-
-                    Toast.makeText(
-                        applicationContext,
-                        "Download successfully to  ${file.path}",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-            }
             else{
+                Log.i("TAG","Version Id : "+Build.VERSION.SDK_INT)
+
+                 // if used under android Q throws error for unsupported URI
 
                 val values = ContentValues().apply{
                     put(MediaStore.Images.Media.DISPLAY_NAME,"imgMS.jpeg")

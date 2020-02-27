@@ -29,7 +29,7 @@ class AccessMediaLocationActivity : AppCompatActivity() {
     fun chooseFile(view: View) {
         Log.i("Tag", "chooseFile")
 
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 
             openIntentChooser()
 
@@ -50,7 +50,7 @@ class AccessMediaLocationActivity : AppCompatActivity() {
 
     }
 
-    fun openIntentChooser() {
+    private fun openIntentChooser() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
@@ -73,7 +73,10 @@ class AccessMediaLocationActivity : AppCompatActivity() {
                         val exifInterface = ExifInterface(inputStream!!)
 
 
-
+                        Log.i(
+                            "TAG",
+                            "===${exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE)}"
+                        )
                         //ExifInterface.TAG_IMAGE_LENGTH
                         //ExifInterface.TAG_IMAGE_WIDTH
                         //ExifInterface.TAG_DATETIME
@@ -91,10 +94,6 @@ class AccessMediaLocationActivity : AppCompatActivity() {
                         //ExifInterface.TAG_GPS_LONGITUDE_REF
                         //ExifInterface.TAG_GPS_PROCESSING_METHOD
 
-                        Log.i(
-                            "TAG",
-                            "===${exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE)}"
-                        )
                         Glide.with(ivImage)
                             .load(data.dataString)
                             .thumbnail(0.33f)
@@ -110,8 +109,7 @@ class AccessMediaLocationActivity : AppCompatActivity() {
                             getString(R.string.lat_for_image),
                             exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE)
                         )
-                        // Now you can extract any Exif tag you want
-                        // Assuming the image is a JPEG or supported raw format
+
                     } catch (e: IOException) {
                         // Handle any errors
                     } finally {

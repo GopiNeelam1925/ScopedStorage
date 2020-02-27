@@ -64,14 +64,6 @@ class ImagePickerViewModel(application: Application) : AndroidViewModel(applicat
 
         withContext(Dispatchers.IO) {
 
-            val projection = arrayOf(
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.Images.Media.DATE_TAKEN
-            )
-
-            val selection = "${MediaStore.Images.Media.DATE_TAKEN} >= ?"
-
             val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
 
             getApplication<Application>().contentResolver.query(
@@ -93,7 +85,11 @@ class ImagePickerViewModel(application: Application) : AndroidViewModel(applicat
                     // Here we'll use the column indexs that we found above.
                     val id = cursor.getLong(idColumn)
                     val dateTaken = Date(cursor.getLong(dateTakenColumn))
-                    val displayName = cursor.getString(displayNameColumn)
+                    var displayName = "Image"
+                    if(cursor.getString(displayNameColumn)!= null){
+                        displayName= cursor.getString(displayNameColumn)
+                    }
+
 
                     val contentUri = ContentUris.withAppendedId(
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI,

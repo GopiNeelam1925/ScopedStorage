@@ -38,7 +38,7 @@ object CheckPermission {
 
     }
 
-    fun checkPermissionForReadWrite(context: Context): Boolean {
+    fun checkPermissionForRead(context: Context): Boolean {
         Log.i("Tag", "checkPermissionForREadWriteBelowP")
         val result: Int =
             ContextCompat.checkSelfPermission(
@@ -49,6 +49,8 @@ object CheckPermission {
         return result == PackageManager.PERMISSION_GRANTED
     }
 
+
+
     //Request Permission if not given
 
     fun requestPermissionForReadWrite(context: Context) {
@@ -56,34 +58,12 @@ object CheckPermission {
 
         ActivityCompat.requestPermissions(
             context as Activity,
-            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_READ_EXTERNAL_STORAGE
+            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.WRITE_EXTERNAL_STORAGE), PERMISSION_READ_EXTERNAL_STORAGE
         )
 
     }
 
-    fun checkMultiplePermissions(permissionList: ArrayList<String>,context: Context): Boolean {
-        val arrPermission = checkPermissions(permissionList,context)
-        if (arrPermission.isNotEmpty()) {
-            ActivityCompat.requestPermissions(context as Activity,
-                arrPermission,
-                PERMISSION_READ_EXTERNAL_STORAGE)
-            return true
-        }
-        return false
-    }
 
-    private fun checkPermissions(permissionList: ArrayList<String>,context: Context): Array<String?> {
-        val arrPermission = ArrayList<String>()
-
-        for (i in permissionList.indices) {
-            val permission = permissionList[i]
-            if (ContextCompat.checkSelfPermission(context,
-                    permission) != PackageManager.PERMISSION_GRANTED) {
-                arrPermission.add(permission)
-            }
-        }
-        return arrPermission.toTypedArray()
-    }
 
 
 }
