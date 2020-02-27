@@ -1,6 +1,16 @@
 # ScopedStorage
 Scoped Storage Demo in Android
 <br>
+### Includes:
+Download Image.<br>
+Media Store example.<br>
+Delete Image with RecoverableSecurityException.<br>
+<ACCESS_MEDIA_LOCATION> permission example.<br>
+OPEN_DOCUMENT_TREE example.<br>
+
+
+
+
 
 ### A Glance
 <img align="left" src="https://user-images.githubusercontent.com/25722093/75435332-e455d780-5978-11ea-8230-118b681082f3.png" width=270 height=500>
